@@ -24,7 +24,7 @@ describe('Teste da rota teams', () => {
     const getAllteams = await chai.request(app).get('\teams');
 
     expect(getAllteams.body).to.deep.equal(teamsMock)
-    expect(getAllteams).to.have.status(StatusCodes.OK);
+    expect(getAllteams).to.have.status(200);
 
   });
 
