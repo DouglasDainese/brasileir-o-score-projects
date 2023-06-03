@@ -9,6 +9,10 @@ class TeamsService {
   public static async getAllTeams(): Promise<Team[]> {
     return TeamsModel.findAll();
   }
+
+  public static async findById(id: number): Promise<Team | null> {
+    return TeamsModel.findByPk(id);
+  }
 }
 
 export default TeamsService;

@@ -7,6 +7,13 @@ class TeamsController {
 
     res.status(200).json(allTeams);
   }
+
+  public static async getTeamById(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const team = await TeamsService.findById(+id);
+
+    res.status(200).json(team);
+  }
 }
 
 export default TeamsController;

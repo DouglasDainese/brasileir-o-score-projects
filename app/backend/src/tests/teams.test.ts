@@ -21,4 +21,15 @@ describe('Rota /teams', () => {
     expect(response.status).to.be.equal(200);
     expect(response.body).to.deep.equal(teamsMock);
   });
+
+  it('GET /teams:id', async () => {
+
+    sinon.stub(TeamsModel, 'findByPk').resolves(teamsMock[7] as any);
+
+    const response = await chai.request(app).get('/teams/7');
+
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.deep.equal(teamsMock[7]);
+  });
+
 });
