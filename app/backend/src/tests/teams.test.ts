@@ -2,30 +2,23 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
-
 import { app } from '../app';
-import TeamsModel from '../database/models/TeamsModel'
+import TeamsModel from '../database/models/TeamsModel';
 import { teamsMock } from './mocks/teamsMocks';
-import { StatusCodes } from 'http-status-codes';
-
-chai.use(chaiHttp);
 
 const { expect } = chai;
+chai.use(chaiHttp);
 
-describe('Teste da rota teams', () => {
+describe('Rota /teams', () => {
+  afterEach(sinon.restore);
 
-  afterEach(() => {
-    sinon.restore();
-  })
+  it('GET /teams', async () => {
 
-  it(' se ao fazer uma requisição GET a resposta contem um status 200 e um json contendo todos os times cadastrados', async () => {
-    sinon.stub(TeamsModel, 'findAll').resolves()
+    sinon.stub(TeamsModel, 'findAll').resolves(teamsMock as any);
 
-    const getAllteams = await chai.request(app).get('\teams');
+    const response = await chai.request(app).get('/teams');
 
-    expect(getAllteams.body).to.deep.equal(teamsMock)
-    expect(getAllteams).to.have.status(200);
-
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.deep.equal(teamsMock);
   });
-
 });
