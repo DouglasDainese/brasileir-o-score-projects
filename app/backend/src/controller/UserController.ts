@@ -7,6 +7,13 @@ class UsersController {
 
     return res.status(200).json({ token: userToken });
   }
+
+  public static async userRole(req: Request, res: Response) {
+    const { id } = req.body;
+    const userRole = await UsersService.findUserRole(id);
+
+    return res.status(200).json({ role: userRole });
+  }
 }
 
 export default UsersController;

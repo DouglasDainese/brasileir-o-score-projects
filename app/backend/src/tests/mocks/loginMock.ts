@@ -1,3 +1,4 @@
-export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc";
+export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6MX0sImlhdCI6MTY4NTkwMjIzNywiZXhwIjoxNjg1OTA0MDM3fQ.YeEkPTMCAYe_DnhWjq1hcn7vJr766Ed_Jwboynxgzho";
+export const tokenInvalid = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6MX0sImlhdCI6MTY4NTg5NzIyMywiZXhwIjoxNjg1ODk5MDIzfQ.42AB4Vebt7JhtxZwr_oiJIVwkGKqf2MEuRzfDI2zTKoY"
 
 export const tokenMock = { token }

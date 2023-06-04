@@ -41,6 +41,14 @@ class UsersService {
     const token = createJwt(user.id);
     return token;
   }
+
+  public static async findUserRole(id: number): Promise< string > {
+    const user = await UsersModel.findByPk(id);
+
+    if (!user) throw new ValidationErrors(500, 'Usuario não encontrado');
+
+    return user.role;
+  }
 }
 
 export default UsersService;
