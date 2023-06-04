@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import ValidationErrors from '../errors/validationsErros';
 
 const checkFieldsLogin = async (
   req: Request,
@@ -8,7 +9,7 @@ const checkFieldsLogin = async (
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: 'All fields must be filled' });
+    throw new ValidationErrors(400, 'All fields must be filled');
   }
 
   next();
