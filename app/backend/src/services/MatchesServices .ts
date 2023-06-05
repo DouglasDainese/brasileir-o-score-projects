@@ -11,11 +11,14 @@ export interface MatchesInProgress {
   awayTeamGoals: number,
 }
 
-export interface Matches extends MatchesInProgress {
-  id: number,
+interface NewMatch extends MatchesInProgress {
+  id?: number,
   homeTeamId: number,
   awayTeamId: number,
   inProgress: boolean,
+}
+
+export interface Matches extends NewMatch {
   homeTeam: {
     teamName: string
   },
@@ -58,6 +61,15 @@ class MatchesService {
       { homeTeamGoals, awayTeamGoals },
       { where: { id } },
     );
+  }
+
+  public static async InsertMatches(newMatchBody: NewMatch): Promise<void | NewMatch> {
+    const match = await MatchesModel.create(
+      { ...newMatchBody, inProgress: true },
+    );
+    const newMatch = await MatchesModel.findByPk(match.dataValues.id);
+
+    return newMatch as NewMatch;
   }
 }
 export default MatchesService;
