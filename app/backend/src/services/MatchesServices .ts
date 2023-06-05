@@ -41,6 +41,13 @@ class MatchesService {
 
     return matches;
   }
+
+  public static async finishMatches(id: number): Promise<void> {
+    await MatchesModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+  }
 }
 
 export default MatchesService;

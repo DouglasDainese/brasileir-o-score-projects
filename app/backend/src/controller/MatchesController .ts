@@ -17,6 +17,14 @@ class MatchesController {
 
     return res.status(200).json(allMatches);
   }
+
+  public static async finishMatches(req: Request, res: Response): Promise<void | Response> {
+    const { id } = req.params;
+
+    await MatchesServices.finishMatches(+id);
+
+    return res.status(200).json({ message: 'Finished' });
+  }
 }
 
 export default MatchesController;
