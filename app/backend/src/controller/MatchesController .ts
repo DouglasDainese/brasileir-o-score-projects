@@ -25,6 +25,15 @@ class MatchesController {
 
     return res.status(200).json({ message: 'Finished' });
   }
+
+  public static async updateMatches(req: Request, res: Response): Promise<void | Response> {
+    const { id } = req.params;
+    const { body } = req;
+
+    await MatchesServices.updateMatches(+id, body);
+
+    return res.status(200).json({ message: 'updated' });
+  }
 }
 
 export default MatchesController;

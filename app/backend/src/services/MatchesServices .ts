@@ -6,12 +6,15 @@ export interface Team {
   teamName: string
 }
 
-export interface Matches {
+export interface MatchesInProgress {
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+}
+
+export interface Matches extends MatchesInProgress {
   id: number,
   homeTeamId: number,
-  homeTeamGoals: number,
   awayTeamId: number,
-  awayTeamGoals: number,
   inProgress: boolean,
   homeTeam: {
     teamName: string
@@ -48,6 +51,13 @@ class MatchesService {
       { where: { id } },
     );
   }
-}
 
+  public static async updateMatches(id: number, matches: MatchesInProgress): Promise<void> {
+    const { homeTeamGoals, awayTeamGoals } = matches;
+    await MatchesModel.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+  }
+}
 export default MatchesService;
