@@ -23,12 +23,23 @@ export interface Matches {
 
 class MatchesService {
   public static async getAllMatches(): Promise<Matches[] | MatchesModel[]> {
-    const allMathes = await MatchesModel.findAll({ include: [
+    const allMatches = await MatchesModel.findAll({ include: [
       { model: TeamsModel, as: 'homeTeam', attributes: { exclude: ['id'] } },
       { model: TeamsModel, as: 'awayTeam', attributes: { exclude: ['id'] } },
     ] });
 
-    return allMathes;
+    return allMatches;
+  }
+
+  public static async getFinishedMatches(inProgress: boolean): Promise<Matches[] | MatchesModel[]> {
+    const matches = await MatchesModel.findAll({
+      where: { inProgress },
+      include: [
+        { model: TeamsModel, as: 'homeTeam', attributes: { exclude: ['id'] } },
+        { model: TeamsModel, as: 'awayTeam', attributes: { exclude: ['id'] } },
+      ] });
+
+    return matches;
   }
 }
 
