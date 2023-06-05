@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-// import ValidationErrors from '../errors/validationsErros';
+import ValidationErrors from '../errors/validationsErros';
 import parseBoolean from '../utils/parseBool';
 import MatchesServices from '../services/MatchesServices ';
-// import TeamsService from '../services/TeamServices';
+import TeamsService from '../services/TeamServices';
 
 class MatchesController {
   public static async getAllMatches(req: Request, res: Response): Promise<void | Response> {
@@ -39,17 +39,18 @@ class MatchesController {
 
   public static async insetMatches(req: Request, res: Response): Promise<void | Response> {
     const { id, ...body } = req.body;
-    // const { homeTeamId, awayTeamId } = body;
-    // const team1 = TeamsService.findById(homeTeamId);
-    // const team2 = TeamsService.findById(awayTeamId);
+    const { homeTeamId, awayTeamId } = body;
 
-    // if (homeTeamId === awayTeamId) {
-    //   throw new ValidationErrors(422, 'It is not possible to create a match with two equal teams');
-    // }
+    if (homeTeamId === awayTeamId) {
+      throw new ValidationErrors(422, 'It is not possible to create a match with two equal teams');
+    }
 
-    // if (!team1 || !team2) {
-    //   throw new ValidationErrors(404, 'There is no team with such id!');
-    // }
+    const team1 = await TeamsService.findById(homeTeamId);
+    const team2 = await TeamsService.findById(awayTeamId);
+
+    if (!team1 || !team2) {
+      throw new ValidationErrors(404, 'There is no team with such id!');
+    }
 
     const newMath = await MatchesServices.InsertMatches(body);
 
