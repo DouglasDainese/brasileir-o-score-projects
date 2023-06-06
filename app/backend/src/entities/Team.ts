@@ -21,7 +21,7 @@ class Team {
   private _goalsFavor: number;
   private _goalsOwn: number;
   private _goalsBalance: number;
-  private _efficiency: number;
+  private _efficiency: string;
 
   constructor(name: string) {
     this._name = name;
@@ -33,12 +33,12 @@ class Team {
     this._goalsFavor = 0;
     this._goalsOwn = 0;
     this._goalsBalance = 0;
-    this._efficiency = 0;
+    this._efficiency = '';
   }
 
   private efficiencyCalculator() {
     const efficiency = ((this._totalPoints / (this._totalGames * 3)) * 100);
-    this._efficiency = Number(efficiency.toFixed(2));
+    this._efficiency = efficiency.toFixed(2);
   }
 
   private goalsDifferencesCalculator() {
