@@ -36,6 +36,13 @@ export const newMatchMock = {
   awayTeamGoals: 2,
 }
 
+export const invalidMatchMock = {
+  homeTeamId: 8,
+  awayTeamId: 8,
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+}
+
 export const newMatchResponseMock = {
   id: 1,
   homeTeamId: 16,
