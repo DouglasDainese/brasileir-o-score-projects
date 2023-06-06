@@ -8,7 +8,7 @@ export type ITeam = {
   goalsFavor: number
   goalsOwn: number
   goalsBalance: number
-  efficiency: number
+  efficiency: string
 };
 
 class Team {
