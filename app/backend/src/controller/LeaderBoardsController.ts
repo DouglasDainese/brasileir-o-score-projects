@@ -8,7 +8,7 @@ class LeaderBoardsController {
   }
 
   public static async getLeaderBoardAways(req: Request, res: Response): Promise<void | Response> {
-    const leaderBoard = await LeaderboardsService.leaderBoadsSorting('aways');
+    const leaderBoard = await LeaderboardsService.leaderBoadsSorting('away');
     return res.status(200).json(leaderBoard);
   }
 
